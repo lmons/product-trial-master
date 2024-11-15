@@ -105,12 +105,11 @@ class ProductController extends AbstractController
     #[Route('/api/products/{id}', name: 'delete_product', methods: ['DELETE'])]
     public function deleteProduct(int $id, ProductRepository $repo): JsonResponse {
         $product = $repo->find($id);
-        dd($product);
-        /* if (!$product) {
+        if (!$product) {
             return $this->json(['error' => 'Product not found'], 404);
         }
         $repo->remove($product, true);
-        return $this->json(['message' => 'Product deleted successfully']); */
+        return $this->json(['message' => 'Product deleted successfully']);
     }
 
     /**
