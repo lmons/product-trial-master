@@ -2,7 +2,8 @@
 
 namespace App\Controller\API;
 
-use App\Entity\Product;  // Assuming this is your Product entity
+
+
 use Nelmio\ApiDocBundle\Annotation\Model;
 use OpenApi\Annotations as OA;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -11,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ProductRepository;
+use App\Entity\Product;
 
 class ProductController extends AbstractController
 {
@@ -103,11 +105,12 @@ class ProductController extends AbstractController
     #[Route('/api/products/{id}', name: 'delete_product', methods: ['DELETE'])]
     public function deleteProduct(int $id, ProductRepository $repo): JsonResponse {
         $product = $repo->find($id);
-        if (!$product) {
+        dd($product);
+        /* if (!$product) {
             return $this->json(['error' => 'Product not found'], 404);
         }
         $repo->remove($product, true);
-        return $this->json(['message' => 'Product deleted successfully']);
+        return $this->json(['message' => 'Product deleted successfully']); */
     }
 
     /**
